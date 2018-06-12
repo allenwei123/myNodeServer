@@ -1,27 +1,31 @@
 const router = require('koa-router')()
 const service = require('../server/user');
 
-// router.prefix('/users')
+router.prefix('/v1')
 
-router.get('/proxy/users/bar', async (ctx, next) => {
-  let res = await service().getDetail();
+router.get('/users/bar', async (ctx, next) => {
+  const token = ctx.request.header['bit-token'];
+  let res = await service(token).getDetail();
   const json = await res.json();
-  if (!json.errorCode) {
-    ctx.body = json;
-    ctx.set('Content-type', 'application/json;charset=utf-8')
-  }
+  ctx.body = json;
+  ctx.set('Content-type', 'application/json;charset=utf-8')
+})
 
-  router.post('/proxy/user/signIn', async (ctx) => {
-    let body = ctx.request.body;
-    let res = await service(body).signIn();
-    const json = await res.json();
-    if (!json.errorCode) {
-      ctx.body = json;
-      ctx.set('Content-type', 'application/json;charset=utf-8')
-    }
-  })
+router.post('/user/signIn', async (ctx) => {
+  let body = ctx.request.body;
+  let res = await service().signIn(body);
+  const json = await res.json();
+  ctx.body = json;
+  ctx.set('Content-type', 'application/json;charset=utf-8')
+})
 
-
+router.get('/community/building/page', async (ctx, next) => {
+  const token = ctx.request.header['bit-token'];
+  let query = ctx.request.query;
+  let res = await service(token).getTable(query);
+  const json = await res.json();
+  ctx.body = json;
+  ctx.set('Content-type', 'application/json;charset=utf-8')
 })
 
 module.exports = router
