@@ -15,15 +15,13 @@ onerror(app)
 
 // middlewares
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+  enableTypes:['json', 'fotextrm', '']
 }))
 
 app.use(json())
 app.use(logger())
 
 app.use(require('koa-static')(__dirname + '/public'))
-
-
 
 // logger
 app.use(async (ctx, next) => {

@@ -28,4 +28,12 @@ router.get('/community/building/page', async (ctx, next) => {
   ctx.set('Content-type', 'application/json;charset=utf-8')
 })
 
+router.get('/oss/sts-token/read-only', async (ctx, next) => {
+  const token = ctx.request.header['bit-token'];
+  let res = await service(token).ossGet();
+  const json = await res.json();
+  ctx.body = json;
+  ctx.set('Content-type', 'application/json;charset=utf-8')
+})
+
 module.exports = router
