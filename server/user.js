@@ -50,7 +50,15 @@ module.exports = function(token) {
         }
         return fetch(config.dev.root +`/oss/sts-token/read-only`, option)
     }
+    this.getTableList = function(query) {
+        const option = {
+            method: 'GET',
+            headers: headers,
+            timeout: 5000,
+        }
 
-    
+        
+        return fetch(config.dev.root +`/oss/sts-token/read-only`, option)
+    }
     return this;
 }
