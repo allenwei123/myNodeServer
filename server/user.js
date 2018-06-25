@@ -50,5 +50,7 @@ module.exports = function(token) {
         }
         return fetch(config.dev.root +`/oss/sts-token/read-only`, option)
     }
+
+    
     return this;
 }
