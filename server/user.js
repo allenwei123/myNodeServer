@@ -57,6 +57,8 @@ module.exports = function(token) {
             headers: headers,
             timeout: 5000,
         }
+
+        
         return fetch(config.dev.root +`/oss/sts-token/read-only`, option)
     }
 
