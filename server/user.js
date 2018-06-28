@@ -50,7 +50,6 @@ module.exports = function(token) {
         }
         return fetch(config.dev.root +`/oss/sts-token/read-only`, option)
     }
-
     this.getTableList = function(query) {
         const option = {
             method: 'GET',
@@ -61,7 +60,5 @@ module.exports = function(token) {
         
         return fetch(config.dev.root +`/oss/sts-token/read-only`, option)
     }
-
-
     return this;
 }
